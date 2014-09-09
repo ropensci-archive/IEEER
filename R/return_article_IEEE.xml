@@ -1,0 +1,172 @@
+<root>
+<totalfound>1</totalfound>
+<totalsearched>3795823</totalsearched>
+<document>
+<rank>1</rank>
+<title>
+<![CDATA[ Class Loader Firmware on Java SoC ]]>
+</title>
+<authors>
+<![CDATA[
+Hua-Ning Wang; Wei-Wei Dai; Hong-Zhou Tan; Zhi-Rui Chen
+]]>
+</authors>
+<affiliations>
+<![CDATA[
+Sch. of Inf. Sci. & Technol., Sun Yat-sen Univ., Guangzhou, China
+]]>
+</affiliations>
+<controlledterms>
+<term>
+<![CDATA[ Java ]]>
+</term>
+<term>
+<![CDATA[ data handling ]]>
+</term>
+<term>
+<![CDATA[ embedded systems ]]>
+</term>
+<term>
+<![CDATA[ firmware ]]>
+</term>
+<term>
+<![CDATA[ program compilers ]]>
+</term>
+<term>
+<![CDATA[ system-on-chip ]]>
+</term>
+<term>
+<![CDATA[ virtual machines ]]>
+</term>
+</controlledterms>
+<uncontrolledterms>
+<term>
+<![CDATA[ JOP ]]>
+</term>
+<term>
+<![CDATA[ Java SoC ]]>
+</term>
+<term>
+<![CDATA[ Java application compilation stage ]]>
+</term>
+<term>
+<![CDATA[ Java bytecode instruction execution ]]>
+</term>
+<term>
+<![CDATA[ Java class file loader firmware design ]]>
+</term>
+<term>
+<![CDATA[ Java processor ]]>
+</term>
+<term>
+<![CDATA[ Java run-time environment ]]>
+</term>
+<term>
+<![CDATA[ Java virtual machine ]]>
+</term>
+<term>
+<![CDATA[ embedded Java platform ]]>
+</term>
+<term>
+<![CDATA[ platform-independence feature ]]>
+</term>
+<term>
+<![CDATA[ programming architecture ]]>
+</term>
+<term>
+<![CDATA[ software emulation ]]>
+</term>
+<term>
+<![CDATA[ system-on-chip ]]>
+</term>
+</uncontrolledterms>
+<thesaurusterms>
+<term>
+<![CDATA[ Acceleration ]]>
+</term>
+<term>
+<![CDATA[ Application software ]]>
+</term>
+<term>
+<![CDATA[ Computer architecture ]]>
+</term>
+<term>
+<![CDATA[ Emulation ]]>
+</term>
+<term>
+<![CDATA[ Image generation ]]>
+</term>
+<term>
+<![CDATA[ Image resolution ]]>
+</term>
+<term>
+<![CDATA[ Java ]]>
+</term>
+<term>
+<![CDATA[ Microprogramming ]]>
+</term>
+<term>
+<![CDATA[ Runtime environment ]]>
+</term>
+<term>
+<![CDATA[ System-on-a-chip ]]>
+</term>
+</thesaurusterms>
+<pubtitle>
+<![CDATA[
+Computer Science and Computational Technology, 2008. ISCSCT '08. International Symposium on
+]]>
+</pubtitle>
+<punumber>
+<![CDATA[ 4731351 ]]>
+</punumber>
+<pubtype>
+<![CDATA[ Conference Publications ]]>
+</pubtype>
+<publisher>
+<![CDATA[ IEEE ]]>
+</publisher>
+<volume>
+<![CDATA[ 1 ]]>
+</volume>
+<py>
+<![CDATA[ 2008 ]]>
+</py>
+<spage>
+<![CDATA[ 224 ]]>
+</spage>
+<epage>
+<![CDATA[ 227 ]]>
+</epage>
+<abstract>
+<![CDATA[
+Java is one of the most popular programming architectures because of its platform-independence. A Java processor called ¿JOP¿ accelerates the speed of Java applications by executing Java bytecode instructions directly instead of by software emulation. However, instructions in Java executable file need to be resolved before executed. JOP finishes this resolving procedure in the Java application compiling stage and generates a memory image of Java run-time environment from Java class files. As the result of that, one of Java¿s outstanding features - platform-independence is lost. This paper gives a design of Java class loader firmware which is integrated with Java processor into a system-on-chip (SoC) and builds up a whole embedded Java platform which runs as a traditional Java virtual machine (JVM). The class loader firmware is essentially a resolved Java program which can be executed directly by Java processor. It offers service of loading and resolving other Java executable files for Java applications at run-time and makes these files really executable for a Java processor.
+]]>
+</abstract>
+<isbn>
+<![CDATA[ 978-1-4244-3746-7 ]]>
+</isbn>
+<htmlFlag>
+<![CDATA[ 1 ]]>
+</htmlFlag>
+<arnumber>
+<![CDATA[ 4731412 ]]>
+</arnumber>
+<doi>
+<![CDATA[ 10.1109/ISCSCT.2008.199 ]]>
+</doi>
+<publicationId>
+<![CDATA[ 4731412 ]]>
+</publicationId>
+<mdurl>
+<![CDATA[
+http://ieeexplore.ieee.org/xpl/articleDetails.jsp?tp=&arnumber=4731412&contentType=Conference+Publications
+]]>
+</mdurl>
+<pdf>
+<![CDATA[
+http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=4731412
+]]>
+</pdf>
+</document>
+</root>
