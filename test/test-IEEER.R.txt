@@ -1,2 +1,0 @@
-library(test-IEEER)
-test_package("IEEER")
