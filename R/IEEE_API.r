@@ -13,7 +13,7 @@
 # parse xml document into R dataframe
 	
 #load XML package
-install.packages('XML')
+install.packages('XML')names
 library('XML')
 
 #place xml doc into R dataframe datadoc
@@ -23,7 +23,7 @@ doc <- xmlTreeParse("C:/Users/Icarus/Documents/GitHub/IEEER/R/search-result.xml"
 top = xmlRoot(doc)
 names(top)
 
-#print xml doc
-print(datadoc) 
+#get abstract
+xmlvalue(doc[["//abstract"]])
 
 	
