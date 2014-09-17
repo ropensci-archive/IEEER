@@ -13,13 +13,15 @@
 # parse xml document into R dataframe
 	
 #load XML package
-load.package('XML')
+install.packages('XML')
 library('XML')
 
 #place xml doc into R dataframe datadoc
-doc <- xmlParse("search-result.xml")
-datadoc <- xmlToDataFrame(doc)
+doc <- xmlTreeParse("C:/Users/Icarus/Documents/GitHub/IEEER/R/search-result.xml", useInternal = TRUE)
 
+#print search results and searched articles
+top = xmlRoot(doc)
+names(top)
 
 #print xml doc
 print(datadoc) 
