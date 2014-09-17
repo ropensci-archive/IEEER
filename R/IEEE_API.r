@@ -13,7 +13,7 @@
 # parse xml document into R dataframe
 	
 #load XML package
-install.packages('XML')names
+install.packages('XML')
 library('XML')
 
 #place xml doc into R dataframe datadoc
@@ -51,9 +51,6 @@ xmlValue(doc[["//doi"]])
 
 #get affliations
 xmlValue(doc[["//affiliations"]])
-
-#get publication title
-xmlvalue(doc[["Publication Title"]])
 
 #get isbn
 xmlValue(doc[["//isbn"]])
