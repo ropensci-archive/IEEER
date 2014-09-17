@@ -26,42 +26,39 @@ top = xmlRoot(doc)
 names(top)
 
 #get abstract
-xmlValue(doc[["//abstract"]])
+abstract <- xmlValue(doc[["//abstract"]])
 
 #get author
-xmlValue(doc[["//authors"]])
+author <- xmlValue(doc[["//authors"]])
 
 #get pubtitle title
-xmlValue(doc[["//pubtitle"]])
+pubtitle <- xmlValue(doc[["//pubtitle"]])
 
 #get pubtitle
-xmlValue(doc[["//pubtype"]])
+pubtype <- xmlValue(doc[["//pubtype"]])
 
 #get publisher
-xmlValue(doc[["//publisher"]])
+publisher <- xmlValue(doc[["//publisher"]])
 
-#get volue
-xmlValue(doc[["//volume"]])
+#get volume
+volume <- xmlValue(doc[["//volume"]])
 
 #get page
-xmlValue(doc[["//py"]])
+pagenumber <- xmlValue(doc[["//py"]])
 
 #get DOI
-xmlValue(doc[["//doi"]])
+DOI <- xmlValue(doc[["//doi"]])
 
 #get affliations
-xmlValue(doc[["//affiliations"]])
+affiliations <- xmlValue(doc[["//affiliations"]])
 
 #get isbn
-xmlValue(doc[["//isbn"]])
-
-# get issn
-xmlValue(doc[["//issn"]])
+isbn <- xmlValue(doc[["//isbn"]])
 
 # get url address
-xmlvalue(doc[["//mdurl"]])
+url <- xmlValue(doc[["//mdurl"]])
 
 # get pdf location
-xmlvalue(doc[["//pdf"]])
+pdf <- xmlValue(doc[["//pdf"]])
 
 	
