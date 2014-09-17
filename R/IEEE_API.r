@@ -21,4 +21,7 @@ doc <- xmlParse("search-result.xml")
 datadoc <- xmlToDataFrame(doc)
 
 
+#print xml doc
+print(datadoc) 
+
 	
