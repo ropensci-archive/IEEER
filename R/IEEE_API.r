@@ -1,14 +1,12 @@
-# INSERT API DOC here
-#	call_function{
-#	}
+# example: 
+#	IEEE_Search{
+#	
 #	
 #	search(number, title,{
 #	
 #		return abstract
 #	}
 #
-# return XML document
-
 
 # parse xml document into R dataframe
 	
