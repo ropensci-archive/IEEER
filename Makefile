@@ -1,5 +1,4 @@
-all: doc data
-#all: doc data vignettes
+all: doc data vignettes
 .PHONY: doc data vignettes
 
 doc:

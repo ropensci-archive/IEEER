@@ -1,0 +1,222 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{IEEER tutorial}
+-->
+
+# IEEER tutorial
+
+[IEEE](http://www.ieee.org/index.html) stands for the Institute of
+Electrical and Electronic Engineers. It publishes well over 100
+peer-reviewed journals from
+[IEEE Antennas and Propagation](http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8)
+to
+[IEEE Nuclear](http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=23)
+to
+[IEEE Ultrasonics, Ferroelectrics & Frequency Control Society](http://www.ieee-uffc.org/).
+
+The [IEEER package](https://github.com/saulwiggin/IEEER) is an
+[R](http://www.r-project.org) interface to the
+[IEEE Xplore Search Gateway](http://ieeexplore.ieee.org/gateway/).
+
+```{r change_IEEER_delay_option, include=FALSE}
+options(IEEER_delay=0.5)
+```
+
+## Installation
+
+The [IEEER package](https://github.com/saulwiggin/IEEER) is not
+currently available on [CRAN](http://cran.r-project.org). To install the
+package from [GitHub](http://github.com), use
+`devtools::install_github()`, as follows:
+
+```{r install_pkgs, eval=FALSE}
+install.packages("devtools")
+library(devtools)
+install_github("saulwiggin/IEEER")
+```
+
+## Basic use
+
+Use `IEEE_search()` to search the
+[IEEE Xplore Search Gateway](http://ieeexplore.ieee.org/gateway/) and
+`IEEE_count()` to get a simple count of articles matching a query.
+
+Suppose we wanted to identify all arXiv manuscripts with
+&ldquo;`Rabiner, L.`&rdquo; as an author.  It is best to first get a
+count, so that we have a sense of how many records the search will
+return. We first use `library()` to load the IEEER package and then
+`IEEE_count()` to get the count.
+
+```{r IEEE_count}
+library(IEEER)
+IEEE_count(list(au="Rabiner, L"))
+```
+
+The search query could be single character string as free text,
+`"Rabiner, L"`, but in that case it will be a general search and not
+specific to the author field. To search just for an author, we use a
+list with names corresponding to the possible query parameters; `au`
+for author, `ti` for title, etc. The package includes a dataset
+`query_param` with the parameter abbreviations, taken from a table at
+the [IEEE Xplore Search page](http://ieeexplore.ieee.org/gateway/).
+
+To get a count of the number of records with `Rabiner, L` as author
+and `Markov` in the title, we would use:
+
+```{r IEEE_count_w_Markov}
+IEEE_count(list(au="Rabiner, L", ti="Markov"))
+```
+
+To obtain the actual records matching the query, use `IEEE_search()`.
+
+```{r IEEE_search}
+rec <- IEEE_search(list(au="Rabiner, L", ti="Markov"))
+nrow(rec)
+```
+
+The default is to grab no more than 10 records; this limit can be
+changed with the `limit` argument. But note that you should avoid
+downloading a _large_ number of records; more on this below.
+
+Also note that the result of `IEEE_search()` has an attribute
+`"totalfound"` containing the total count of search results; this
+is the same as what `IEEE_count()` provides.
+
+```{r IEEE_search_attr}
+attr(rec, "totalfound")
+```
+
+The following will get us all
+`r IEEE_count(list(au="Rabiner, L", ti="Markov"))`
+records.
+
+```{r IEEE_search_limit50}
+rec <- IEEE_search(list(au="Rabiner, L", ti="Markov"), limit=50)
+nrow(rec)
+```
+
+`IEEE_search()` returns a data frame with each row being a single
+manuscript. The columns are the different fields (e.g., `authors`, `title`,
+`abstract`, etc.).
+
+
+## Forming queries
+
+The query argument to `IEEE_count()` and `IEEE_search()` 
+can be a single
+character string, for a general text search, but more often it will be
+a named list of character strings, with the names corresponding to the
+possible query parameters.
+
+### Query parameters
+
+The IEEER package includes a dataset `query_param` that
+lists the terms (like `au`) that you can use. Here is the first five
+
+```{r query_param}
+query_param[1:5,]
+```
+
+These are taken from a table at
+the [IEEE Xplore Search page](http://ieeexplore.ieee.org/gateway/).
+
+
+## Search results
+
+The output of `IEEE_search()` is a data frame with the following
+columns.
+
+```{r IEEE_search_result}
+res <- IEEE_search(list(au="Rabiner, L"), limit=1)
+names(res)
+```
+
+The columns are described in the help file for `IEEE_search()`. Try
+`?IEEE_search`.
+
+## Sorting results
+
+The `IEEE_search()` function has two arguments for sorting the results,
+`sort_by` (taking values like `"year"`, `"author"`, and
+`"title`) and `ascending` (`TRUE` or `FALSE`).
+
+Here's an example, to sort the results by title, in descending order.
+
+```{r sortby_example}
+res <- IEEE_search(list(au="Rabiner, L", title="Markov"),
+                   sort_by="title", ascending=FALSE)
+res$title
+```
+
+
+## Technical details
+
+### Metadata limitations
+
+The IEEE metadata has a number of
+limitations.
+
+Authors' names may vary between records (e.g., Rabiner,
+L. vs. Rabiner, L.R. vs. Rabiner, Lawrence R.)
+Further, IEEE provides no ability to
+distinguish multiple individuals with the same name (c.f.,
+[ORCID](http://orcid.org)).
+
+
+### Limit time between search requests
+
+Care should be taken to avoid multiple requests to the IEEE Xplore
+Search Gateway in a
+short period of time.
+
+The IEEER package institutes a delay between requests, with the time
+period for the delay configurable with the R option
+`"IEEER_delay"` (in seconds). The default is 3 seconds.
+
+To reduce the delay to 1 second, use:
+
+```{r IEEER_delay, eval=FALSE}
+options(IEEER_delay=1)
+```
+
+**Don't** do searches in parallel (e.g., via the parallel
+package). You may be locked out from the IEEE Xplore Search.
+
+
+### Limit number of items returned
+
+The IEEE Xplore Search Gateway returns only complete records (including the entire
+abstracts); searches returning large numbers of records can be very
+slow.
+
+It's best to use `IEEE_count()` before `IEEE_search()`, so that you have
+a sense of how many records you will receive. If the count is large,
+you may wish to refine your query.
+
+The `limit` argument to `IEEE_search()` (with default `limit=10`)
+limits the number of records to be returned. If you wish to receive
+more than 10 records, you must specify a larger limit (e.g., `limit=100`).
+
+### Make requests in batches
+
+Even for searches that return a moderate number of records (say
+2,000), it may be best to make the requests in batches: Use a smaller
+value for the `limit` argument (say 100), and make multiple requests
+with different offsets, indicated with the `start` argument, for the
+initial record to return.
+
+This is done automatically with the `batchsize` argument to
+`IEEE_search()`.  A search is split into multiple calls, with no more
+than `batchsize` records to be returned by each, and then the results
+are combined.
+
+
+## License and bugs
+
+- License:
+  [MIT](https://github.com/saulwiggin/IEEER/blob/master/LICENSE)
+- Report bugs or suggestions improvements by [submitting an issue](https://github.com/saulwiggin/IEEER/issues) to
+  [the GitHub repository for IEEER](https://github.com/saulwiggin/IEEER).
+
+<!-- the following to make it look nicer -->
+<link href="http://kbroman.org/qtlcharts/assets/vignettes/vignette.css" rel="stylesheet"></link>
