@@ -13,7 +13,7 @@ The package is not currently available on
 ```r
 install.packages("devtools")
 library(devtools)
-install_github("ropensci/aRxiv")
+install_github("saulwiggin/IEEER")
 ```
 
 ### Basic usage
@@ -21,8 +21,8 @@ install_github("ropensci/aRxiv")
 The main function is `IEEE_search()`. Here's an example of its use:
 
 ```r
-library(IEEE_search)
-z <- IEEE_search(query = 'au:"Saul Wiggin", limit=20)
+library(IEEER)
+z <- IEEE_search(query = 'au:"Saul Wiggin"', limit=20)
 str(z)
 ```
 
