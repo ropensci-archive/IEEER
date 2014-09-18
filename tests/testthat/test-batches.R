@@ -9,7 +9,7 @@ test_that("batch search gives same result as all together", {
     options(IEEER_delay=0.5)
 
     # all together
-    query <- list(au="Rabiner, L", ti="Markov", pye=1985)
+    query <- list(au="Rabiner, L", ti="Markov")
     z <- IEEE_search(query)
     z_time <- attr(z, "search_info")["time"]
 
