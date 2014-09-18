@@ -1,7 +1,6 @@
-all: doc notes data vignettes
-.PHONY: notes doc data vignettes
-
-notes: inst/ToDo.html
+all: data
+#all: doc data vignettes
+.PHONY: doc data vignettes
 
 inst/ToDo.html: inst/ToDo.md
 	R -e 'library(markdown);markdownToHTML("$<", "$@")'
@@ -9,13 +8,12 @@ inst/ToDo.html: inst/ToDo.md
 doc:
 	R -e 'library(devtools);document()'
 
-vignettes: inst/doc/aRxiv.html
+vignettes: inst/doc/IEEER.html
 
-inst/doc/aRxiv.html: vignettes/aRxiv.Rmd
+inst/doc/IEEER.html: vignettes/IEEER.Rmd
 	cd $(@D);R -e 'library(knitr);knit2html("../../$<")'
 
-data: data/arxiv_cats.RData
+data: data/query_terms.RData
 
-data/arxiv_cats.RData: inst/scripts/grab_api_manual_tables.R
-# also data/query_terms.RData (built together)
+data/query_terms.RData: inst/scripts/grab_api_table.R
 	cd $(<D);R CMD BATCH $(<F)
