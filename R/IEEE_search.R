@@ -27,30 +27,32 @@
 #'
 #' The data frame format has the following columns.
 #' \tabular{rll}{
-#'  [,1] \tab rank             \tab numeric rank in search \cr
-#'  [,2] \tab title            \tab document title \cr
-#'  [,3] \tab authors          \tab authors \cr
-#'  [,4] \tab thesaurusterms   \tab thesaurus terms \cr
-#'  [,5] \tab pubtitle         \tab journal title \cr
-#'  [,6] \tab punumber         \tab publication number \cr
-#'  [,7] \tab pubtype          \tab publication type \cr
-#'  [,8] \tab publisher        \tab publisher \cr
-#'  [,9] \tab py               \tab publication year \cr
-#' [,10] \tab spage            \tab start page \cr
-#' [,11] \tab epage            \tab end page \cr
-#' [,12] \tab abstract         \tab abstract \cr
-#' [,13] \tab isbn             \tab ISBN number \cr
-#' [,14] \tab htmlFlag         \tab html flag (\code{"1"} or \code{""}) \cr
-#' [,15] \tab arnumber         \tab article number \cr
-#' [,16] \tab doi              \tab DOI \cr
-#' [,17] \tab publicationId    \tab publication ID \cr
-#' [,18] \tab mdurl            \tab document URL \cr
-#' [,19] \tab pdf              \tab URL for PDF \cr
-#' [,20] \tab affiliations     \tab authors' affiliations \cr
-#' [,21] \tab controlledterms  \tab controlled terms (keywords) \cr
-#' [,22] \tab volume           \tab volumn number \cr
-#' [,23] \tab issn             \tab ISSN number \cr
-#' [,24] \tab issue            \tab issue number \cr
+#'  [,1] \tab rank              \tab numeric rank in search \cr
+#'  [,2] \tab title             \tab article title \cr
+#'  [,3] \tab authors           \tab semicolon delimited list of author names \cr
+#'  [,4] \tab affiliations      \tab authors' affiliations \cr
+#'  [,5] \tab pubtitle          \tab publication in which article appears \cr
+#'  [,6] \tab punumber          \tab IEEE identifier for publication \cr
+#'  [,7] \tab py                \tab publication year \cr
+#'  [,8] \tab volume            \tab volume number \cr
+#'  [,9] \tab issue             \tab issue number \cr
+#' [,10] \tab part              \tab part \cr
+#' [,11] \tab spage             \tab start page \cr
+#' [,12] \tab epage             \tab end page \cr
+#' [,13] \tab arnumber          \tab unique article number \cr
+#' [,14] \tab abstract          \tab first 250 words of the abstract \cr
+#' [,15] \tab doi               \tab digital object identifier \cr
+#' [,16] \tab mdurl             \tab document URL \cr
+#' [,17] \tab pdf               \tab URL for PDF \cr
+#' [,18] \tab pubtype           \tab publication type (Journal, Conference, or Standard)\cr
+#' [,19] \tab publisher         \tab publisher \cr
+#' [,20] \tab isbn              \tab ISBN number \cr
+#' [,21] \tab issn              \tab ISSN number \cr
+#' [,22] \tab publicationId     \tab publication ID \cr
+#' [,23] \tab thesaurusterms    \tab terms from IEEE thesaurus \cr
+#' [,24] \tab controlledterms   \tab terms from INSPEC controlled thesaurus \cr
+#' [,25] \tab uncontrolledterms \tab terms not from INSPEC thesaurus \cr
+#' [,26] \tab htmlFlag          \tab html flag (\code{"1"} or \code{""}) \cr
 #' }
 #'
 #' The contents are all strings; missing values are empty strings (\code{""}).

@@ -35,10 +35,32 @@ function(record, sep="|")
 expected_columns <-
 function()
 {
-  c("rank", "title", "authors", "thesaurusterms", "pubtitle", "punumber",
-    "pubtype", "publisher", "py", "spage", "epage", "abstract", "isbn",
-    "htmlFlag", "arnumber", "doi", "publicationId", "mdurl", "pdf",
-    "affiliations", "controlledterms", "volume", "issn", "issue")
+    c("rank",
+      "title",
+      "authors",
+      "affiliations",
+      "pubtitle",
+      "punumber",
+      "py",
+      "volume",
+      "issue",
+      "part",
+      "spage",
+      "epage",
+      "arnumber",
+      "abstract",
+      "doi",
+      "mdurl",
+      "pdf",
+      "pubtype",
+      "publisher",
+      "isbn",
+      "issn",
+      "publicationId",
+      "thesaurusterms",
+      "controlledterms",
+      "uncontrolledterms",
+      "htmlFlag")
 }
 
 # data frame for an empty result
