@@ -1,2 +1,2 @@
 library(testthat)
-test_check("aRxiv")
+test_check("IEEER")
