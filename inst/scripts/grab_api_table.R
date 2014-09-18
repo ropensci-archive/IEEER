@@ -11,12 +11,20 @@ tab <- cbind(tab, type=rep("", nrow(tab)), stringsAsFactors=FALSE)
 for(i in 1:(length(headings)-1))
     tab[headings[i]:(headings[i+1]-1), "type"] <- names(headings)[i]
 
+# omit the headings and remove extraneous characters from the rest
+query_param <- tab[-headings,]
+query_param[is.na(query_param)] <- ""
+query_param <- apply(query_param, 2, function(a) gsub('[\r\n\t"]', "", a))
 
-query_terms <- tab[-headings,]
-query_terms[is.na(query_terms)] <- ""
-query_terms <- apply(query_terms, 2, function(a) gsub('[\r\n\t"]', "", a))
-query_terms <- as.data.frame(query_terms, stringsAsFactors=FALSE)
-colnames(query_terms) <- c("term", "description", "boolean_query_field", "type")
+# make data frame; change column names
+query_param <- as.data.frame(query_param, stringsAsFactors=FALSE)
+colnames(query_param) <- c("term", "description", "boolean_query_field", "type")
+
+# remove the sorting/paging/faceting rows
+query_param <- query_param[query_param$type != "Sorting parameters" &
+                           query_param$type != "Paging parameters" &
+                           query_param$type != "Open Facets parameters" &
+                           query_param$type != "Open Facets Possible Values",]
 
 ## save as data sets within package
-save(query_terms, file="../../data/query_terms.RData")
+save(query_param, file="../../data/query_param.RData")

@@ -1,10 +1,10 @@
-#' IEEE query field terms
+#' IEEE query field parameters
 #'
-#' Possible terms that correspond to different fields in IEEE searches.
+#' Possible parameters for IEEE searches.
 #'
 #' @docType data
 #'
-#' @usage data(query_terms)
+#' @usage data(query_param)
 #'
 #' @format A data frame with four columns: the \code{term}, \code{description}, \code{boolean_query_field},
 #' and \code{type}.
@@ -14,5 +14,5 @@
 #' @keywords datasets
 #'
 #' @examples
-#' query_terms
-"query_terms"
+#' query_param
+"query_param"
