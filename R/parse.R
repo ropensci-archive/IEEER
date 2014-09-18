@@ -1,42 +1,44 @@
 
 # convert XML result from arxiv_search to a list format
 result2list <-
-function(searchresult)
+function(searchresult, sep="|")
 {
-    doc <- XML::xmlParse(httr::content(searchresult, "text"), asText=TRUE)
-    nodes <- rapply(list(doc), function(a) XML::getNodeSet(a, path="/"),
-                    how="replace")
-    result <- rapply(nodes, function(x) XML::xmlToList(x), how="replace")[[1]][[1]][[1]]
+    root <- XML::xmlRoot(XML::xmlParse(httr::content(searchresult, "text"), asText=TRUE))
+    totalfound <- as.numeric(XML::xmlValue(root[["totalfound"]]))
+    totalsearched <- as.numeric(XML::xmlValue(root[["totalsearched"]]))
+
+    result <- lapply(root["document"], record2vector, sep=sep)
+    attr(result, "totalfound") <- totalfound
+    attr(result, "totalsearched") <- totalsearched
 
     result
 }
 
-# pull all elements of list with a certain name
-pull_by_key <-
-function(a_list, key)
+record2vector <-
+function(record, sep="|")
 {
-    a_list[names(a_list)==key]
-}
+    nam <- names(record)
+    nfield <- length(nam)
+    len_field <- sapply(record[1:nfield], xmlSize)
 
-# get the entries as a list
-get_entries <-
-function(listresult)
-{
-   pull_by_key(listresult, "entry")
-}
-
-# just get the number of entries
-count_entries <-
-function(listresult)
-{
-    sum(names(listresult)=="entry")
+    res <- rep("", nfield)
+    names(res) <- nam
+    res[len_field==1] <- sapply(record[len_field==1], xmlValue)
+    for(i in which(len_field > 1))
+        res[i] <- paste(sapply(record[[i]][1:len_field[i]], xmlValue), collapse=sep)
+    res
 }
 
 # convert list of results (from result2list) into data.frame
 #   test for this in tests/testthat/test-clean.R
 listresult2df <-
-function(listresult, sep="|")
+function(listresult)
 {
+    expectedfields <- c("rank", "title", "authors", "thesaurusterms", "pubtitle", "punumber",
+                        "pubtype", "publisher", "py", "spage", "epage", "abstract", "isbn",
+                        "htmlFlag", "arnumber", "doi", "publicationId", "mdurl", "pdf",
+                        "affiliations", "controlledterms", "volume", "issn", "issue")
+
     if(length(listresult)==0)
         return(empty_result())
 
