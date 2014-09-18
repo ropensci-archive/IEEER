@@ -15,7 +15,7 @@ data(query_param)
 Possible parameters for IEEE searches.
 }
 \examples{
-query_param
+query_param[1:10,1:2]
 }
 \keyword{datasets}
 

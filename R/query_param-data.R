@@ -14,5 +14,5 @@
 #' @keywords datasets
 #'
 #' @examples
-#' query_param
+#' query_param[1:10,1:2]
 "query_param"

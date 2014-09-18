@@ -14,7 +14,9 @@ for(i in 1:(length(headings)-1))
 # omit the headings and remove extraneous characters from the rest
 query_param <- tab[-headings,]
 query_param[is.na(query_param)] <- ""
-query_param <- apply(query_param, 2, function(a) gsub('[\r\n\t"]', "", a))
+query_param <- apply(query_param, 2, function(a) gsub('\t', ' ', a))
+query_param <- apply(query_param, 2, function(a) gsub('[\r\n"]', "", a))
+query_param <- apply(query_param, 2, function(a) gsub('  ', ' ', a))
 
 # make data frame; change column names
 query_param <- as.data.frame(query_param, stringsAsFactors=FALSE)
@@ -25,6 +27,8 @@ query_param <- query_param[query_param$type != "Sorting parameters" &
                            query_param$type != "Paging parameters" &
                            query_param$type != "Open Facets parameters" &
                            query_param$type != "Open Facets Possible Values",]
+
+rownames(query_param) <- 1:nrow(query_param)
 
 ## save as data sets within package
 save(query_param, file="../../data/query_param.RData")

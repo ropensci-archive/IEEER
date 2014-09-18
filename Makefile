@@ -11,5 +11,5 @@ inst/doc/IEEER.html: vignettes/IEEER.Rmd
 
 data: data/query_param.RData
 
-data/query_terms.RData: inst/scripts/grab_api_table.R
+data/query_param.RData: inst/scripts/grab_api_table.R
 	cd $(<D);R CMD BATCH $(<F)
