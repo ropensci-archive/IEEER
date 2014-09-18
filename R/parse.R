@@ -14,19 +14,40 @@ function(searchresult, sep="|")
     result
 }
 
+# convert XML for a single record to a named vector of character strings
 record2vector <-
 function(record, sep="|")
 {
     nam <- names(record)
     nfield <- length(nam)
-    len_field <- sapply(record[1:nfield], xmlSize)
+    len_field <- sapply(record[1:nfield], XML::xmlSize)
 
     res <- rep("", nfield)
     names(res) <- nam
-    res[len_field==1] <- sapply(record[len_field==1], xmlValue)
+    res[len_field==1] <- sapply(record[len_field==1], XML::xmlValue)
     for(i in which(len_field > 1))
-        res[i] <- paste(sapply(record[[i]][1:len_field[i]], xmlValue), collapse=sep)
+        res[i] <- paste(sapply(record[[i]][1:len_field[i]], XML::xmlValue), collapse=sep)
     res
+}
+
+# expected columns in output
+#   results will contain all of these
+expected_columns <-
+function()
+{
+  c("rank", "title", "authors", "thesaurusterms", "pubtitle", "punumber",
+    "pubtype", "publisher", "py", "spage", "epage", "abstract", "isbn",
+    "htmlFlag", "arnumber", "doi", "publicationId", "mdurl", "pdf",
+    "affiliations", "controlledterms", "volume", "issn", "issue")
+}
+
+# data frame for an empty result
+empty_result <-
+function(columns)
+{
+    result <- lapply(columns, function(a) character(0))
+    names(result) <- columns
+    as.data.frame(result)
 }
 
 # convert list of results (from result2list) into data.frame
@@ -34,20 +55,29 @@ function(record, sep="|")
 listresult2df <-
 function(listresult)
 {
-    expectedfields <- c("rank", "title", "authors", "thesaurusterms", "pubtitle", "punumber",
-                        "pubtype", "publisher", "py", "spage", "epage", "abstract", "isbn",
-                        "htmlFlag", "arnumber", "doi", "publicationId", "mdurl", "pdf",
-                        "affiliations", "controlledterms", "volume", "issn", "issue")
+    n_result <- length(listresult)
 
-    if(length(listresult)==0)
-        return(empty_result())
+    if(n_result==0)
+        return(empty_result(expected_columns()))
 
-    mat <- vapply(listresult, clean_record, sep=sep,
-                  clean_record(listresult[[1]], sep=sep))
+    columns <- expected_columns()
 
-    # strip off a bunch of "entry" values
-    colnames(mat) <- 1:ncol(mat)
+    # names of all fields in input
+    allcol <- unique(unlist(lapply(listresult, names)))
+    m <- match(allcol, columns)
+    # add any unexpected ones to the vector of columns
+    if(any(is.na(m)))
+        columns <- c(columns, allcol[is.na(match(allcol, columns))])
 
-    as.data.frame(t(mat), stringsAsFactors=FALSE)
+    # empty data frame to contain result
+    result <- matrix("", nrow=n_result, ncol=length(columns))
+    dimnames(result) <- list(1:n_result, columns)
+    result <- as.data.frame(result, stringsAsFactors=FALSE)
 
+    # grab info for one column at a time
+    #     missing values made empty character strings
+    for(i in columns)
+        result[,i] <- sapply(listresult, function(a) ifelse(i %in% names(a), a[i], ""))
+
+    result
 }
