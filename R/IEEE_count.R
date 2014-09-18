@@ -3,8 +3,10 @@
 #' Count the number of results for a given search. Useful to check
 #' before attempting to pull down a very large number of records.
 #'
-#' @param query Search pattern as a string; a vector of such strings
-#' are combined with \code{AND}
+#' @param query Character string (for a simple search), or a named
+#' list of search strings, with the names corresponding to IEEE search
+#' parameters (see \code{\link{query_param}} or
+#' \url{http://ieeexplore.ieee.org/gateway})
 #'
 #' @export
 #'
@@ -13,8 +15,8 @@
 #' parameters and the time at which it was performed.
 #'
 #' @examples
-#' \dontshow{old_delay <- getOption("IEEE_delay")
-#'           options(IEEE_delay=1)}
+#' \dontshow{old_delay <- getOption("IEEER_delay")
+#'           options(IEEER_delay=1)}
 #' # count papers in category stat.AP (applied statistics)
 #' IEEE_count(query = "cat:stat.AP")
 #'
@@ -24,33 +26,32 @@
 #' # count papers for a range of dates
 #' #    here, everything in 2013
 #' \donttest{IEEE_count("submittedDate:[2013 TO 2014]")}
-#' \dontshow{options(IEEE_delay=old_delay)}
+#' \dontshow{options(IEEER_delay=old_delay)}
 IEEE_count <-
 function(query=NULL)
 {
     query_url <- "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp"
 
-    query <- paste_query(query)
+    # ensure query is a list and check some parameters
+    query <- clean_query(query)
+
+    # add limit param to query
+    query_to_send <- query
+    query_to_send$hc <- 0
 
     # do search
     delay_if_necessary()
-    search_result <- httr::GET(query_url, list(querytext=query, hc=0))
-    set_IEEE_time() # set time for last call to IEEE
+    search_result <- httr::POST(query_url, query=query_to_send)
+    set_IEEER_time() # set time for last call to IEEE
+
+    # check for http error
+    httr::stop_for_status(search_result)
 
     # convert XML results to a list
     listresult <- result2list(search_result)
 
-    # check for IEEE error
-    error_message <- IEEE_error_message(listresult)
-    if(!is.null(error_message)) {
-        stop("IEEE error: ", error_message)
-    }
-
-    # check for general http error
-    httr::stop_for_status(search_result)
-
     # return totalResults
-    result <- as.integer(listresult$totalResults)
+    result <- attr(listresult, "totalfound")
 
     attr(result, "search_info") <-
         search_attributes(query, NULL, NULL, NULL, NULL)
@@ -74,7 +75,8 @@ omit_attr <-
 function(x)
 {
     attr(x, "search_info") <- NULL
-    attr(x, "total_results") <- NULL
+    attr(x, "totalfound") <- NULL
+    attr(x, "totalsearched") <- NULL
 
     if("IEEE_count" %in% class(x))
         x <- unclass(x)

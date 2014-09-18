@@ -79,5 +79,9 @@ function(listresult)
     for(i in columns)
         result[,i] <- sapply(listresult, function(a) ifelse(i %in% names(a), a[i], ""))
 
+    # copy over the attributes
+    for(s in c("totalfound", "totalsearched"))
+        attr(result, s) <- attr(listresult, s)
+
     result
 }
