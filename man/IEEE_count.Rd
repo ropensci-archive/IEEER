@@ -21,17 +21,13 @@ Count the number of results for a given search. Useful to check
 before attempting to pull down a very large number of records.
 }
 \examples{
-\dontshow{old_delay <- getOption("IEEER_delay")
-          options(IEEER_delay=1)}
-# count papers in category stat.AP (applied statistics)
-IEEE_count(query = "cat:stat.AP")
+# count papers in year 1970
+IEEE_count(list(pys=1970, pye=1970))
 
-# count papers by Peter Hall in any stat category
-\donttest{IEEE_count(query = 'au:"Peter Hall" AND cat:stat*')}
+# count papers by author Rabiner
+\donttest{IEEE_count(list(au="Rabiner"))}
 
-# count papers for a range of dates
-#    here, everything in 2013
-\donttest{IEEE_count("submittedDate:[2013 TO 2014]")}
-\dontshow{options(IEEER_delay=old_delay)}
+# count papers by author Rabiner, L
+\donttest{IEEE_count(list(au="Rabiner, L"))}
 }
 

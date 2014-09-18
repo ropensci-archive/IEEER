@@ -3,7 +3,7 @@
 \alias{IEEE_search}
 \title{The main search function for IEEE}
 \usage{
-IEEE_search(query = NULL, start = 0, limit = 10, sort_by = c("year",
+IEEE_search(query = NULL, start = 1, limit = 10, sort_by = c("year",
   "author", "title", "affilitation", "journal", "articlenumber"),
   ascending = TRUE, batchsize = 100, output_format = c("data.frame",
   "list"), sep = "|")
@@ -14,7 +14,7 @@ list of search strings, with the names corresponding to IEEE search
 parameters (see \code{\link{query_param}} or
 \url{http://ieeexplore.ieee.org/gateway})}
 
-\item{start}{An offset for the start of search}
+\item{start}{An offset for the start of search (\code{>= 1})}
 
 \item{limit}{Maximum number of records to return}
 
@@ -83,22 +83,12 @@ searched.
 Allows for progammatic searching of the IEEE pre-print repository.
 }
 \examples{
-\dontshow{old_delay <- getOption("IEEER_delay")
-          options(IEEER_delay=1)}
-# search for author Peter Hall with deconvolution in title
-z <- IEEE_search(query = 'au:"Peter Hall" AND ti:deconvolution', limit=2)
-attr(z, "total_results") # total no. records matching query
+# search for author Rabiner with Markov in title
+z <- IEEE_search(list(au="Rabiner", ti="Markov"), limit=2)
+attr(z, "totalfound") # total no. records matching query
 z$title
 
-# search for a set of documents by IEEE identifiers
-\donttest{z <- IEEE_search(id_list = c("0710.3491v1", "0804.0713v1", "1003.0315v1"))}
-# can also use a comma-separated string
-\donttest{z <- IEEE_search(id_list = "0710.3491v1,0804.0713v1,1003.0315v1")}
-# Journal references, if available
-z$journal_ref
-
-# search for a range of dates (in this case, one day)
-\donttest{z <- IEEE_search("submittedDate:[199701010000 TO 199701012400]", limit=2)}
-\dontshow{options(IEEER_delay=old_delay)}
+# search for author Rabiner in years 1960-1970
+\donttest{z <- IEEE_search(list(au="Rabiner", pys=1960, pye=1970))}
 }
 
