@@ -15,7 +15,6 @@ Depends:
 License: MIT + file LICENSE
 Imports:
     httr,
-    utils,
     XML
 Suggests:
     devtools,
