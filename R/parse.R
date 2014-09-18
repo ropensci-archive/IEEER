@@ -1,5 +1,5 @@
 
-# convert XML result from arxiv_search to a list format
+# convert XML result from IEEE_search to a list format
 result2list <-
 function(searchresult, sep="|")
 {
