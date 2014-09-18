@@ -6,7 +6,7 @@
 #' list of search strings, with the names corresponding to IEEE search
 #' parameters (see \code{\link{query_param}} or
 #' \url{http://ieeexplore.ieee.org/gateway})
-#' @param start An offset for the start of search
+#' @param start An offset for the start of search (\code{>= 1})
 #' @param limit Maximum number of records to return
 #' @param sort_by How to sort the results
 #' @param ascending If TRUE, sort in ascending order; else descending
@@ -85,7 +85,7 @@
 #' \donttest{z <- IEEE_search("submittedDate:[199701010000 TO 199701012400]", limit=2)}
 #' \dontshow{options(IEEER_delay=old_delay)}
 IEEE_search <-
-function(query=NULL, start=0, limit=10,
+function(query=NULL, start=1, limit=10,
          sort_by=c("year", "author", "title", "affilitation", "journal", "articlenumber"),
          ascending=TRUE, batchsize=100,
          output_format=c("data.frame", "list"), sep="|")
@@ -99,7 +99,7 @@ function(query=NULL, start=0, limit=10,
     sort_order <- ifelse(ascending, "asc", "desc")
     output_format <- match.arg(output_format)
 
-    if(is.null(start)) start <- 0
+    if(is.null(start)) start <- 1
     if(is.null(limit)) limit <- IEEE_count(query)
 
     stopifnot(start >= 1)
