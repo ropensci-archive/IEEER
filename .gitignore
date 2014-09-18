@@ -1,1 +1,3 @@
 *.Rout
+.RData
+.Rhistory
