@@ -9,7 +9,7 @@ to
 to
 [IEEE Ultrasonics, Ferroelectrics & Frequency Control Society](http://www.ieee-uffc.org/).
 
-The [IEEER package](https://github.com/saulwiggin/IEEER) is an
+The [IEEER package](https://github.com/ropensci/IEEER) is an
 [R](http://www.r-project.org) interface to the
 [IEEE Xplore Search Gateway](http://ieeexplore.ieee.org/gateway/).
 
@@ -22,7 +22,7 @@ The package is not currently available on
 ```r
 install.packages("devtools")
 library(devtools)
-install_github("saulwiggin/IEEER")
+install_github("ropensci/IEEER")
 ```
 
 ### Basic usage

@@ -14,7 +14,7 @@ to
 to
 [IEEE Ultrasonics, Ferroelectrics & Frequency Control Society](http://www.ieee-uffc.org/).
 
-The [IEEER package](https://github.com/saulwiggin/IEEER) is an
+The [IEEER package](https://github.com/ropensci/IEEER) is an
 [R](http://www.r-project.org) interface to the
 [IEEE Xplore Search Gateway](http://ieeexplore.ieee.org/gateway/).
 
@@ -24,7 +24,7 @@ options(IEEER_delay=0.5)
 
 ## Installation
 
-The [IEEER package](https://github.com/saulwiggin/IEEER) is not
+The [IEEER package](https://github.com/ropensci/IEEER) is not
 currently available on [CRAN](http://cran.r-project.org). To install the
 package from [GitHub](http://github.com), use
 `devtools::install_github()`, as follows:
@@ -32,7 +32,7 @@ package from [GitHub](http://github.com), use
 ```{r install_pkgs, eval=FALSE}
 install.packages("devtools")
 library(devtools)
-install_github("saulwiggin/IEEER")
+install_github("ropensci/IEEER")
 ```
 
 ## Basic use
@@ -102,7 +102,7 @@ manuscript. The columns are the different fields (e.g., `authors`, `title`,
 
 ## Forming queries
 
-The query argument to `IEEE_count()` and `IEEE_search()` 
+The query argument to `IEEE_count()` and `IEEE_search()`
 can be a single
 character string, for a general text search, but more often it will be
 a named list of character strings, with the names corresponding to the
@@ -214,9 +214,9 @@ are combined.
 ## License and bugs
 
 - License:
-  [MIT](https://github.com/saulwiggin/IEEER/blob/master/LICENSE)
-- Report bugs or suggestions improvements by [submitting an issue](https://github.com/saulwiggin/IEEER/issues) to
-  [the GitHub repository for IEEER](https://github.com/saulwiggin/IEEER).
+  [MIT](https://github.com/ropensci/IEEER/blob/master/LICENSE)
+- Report bugs or suggestions improvements by [submitting an issue](https://github.com/reopensci/IEEER/issues) to
+  [the GitHub repository for IEEER](https://github.com/ropensci/IEEER).
 
 <!-- the following to make it look nicer -->
 <link href="http://kbroman.org/qtlcharts/assets/vignettes/vignette.css" rel="stylesheet"></link>
