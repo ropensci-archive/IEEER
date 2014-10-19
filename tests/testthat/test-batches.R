@@ -1,4 +1,3 @@
-
 context("IEEER_search in batches")
 
 test_that("batch search gives same result as all together", {
@@ -14,7 +13,7 @@ test_that("batch search gives same result as all together", {
     z_time <- attr(z, "search_info")["time"]
 
     # in batches of 5
-    zBatch <- IEEE_search(query, batchsize=5)
+    suppressMessages(zBatch <- IEEE_search(query, batchsize=5))
 
     # fix time
     at <- attr(zBatch, "search_info")
@@ -24,7 +23,7 @@ test_that("batch search gives same result as all together", {
     expect_equal(z, zBatch)
 
     # in batches of 3
-    zBatch <- IEEE_search(query, batchsize=3)
+    suppressMessages(zBatch <- IEEE_search(query, batchsize=3))
 
     # fix time
     at <- attr(zBatch, "search_info")

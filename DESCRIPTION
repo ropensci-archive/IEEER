@@ -1,7 +1,7 @@
 Package: IEEER
 Title: Interface to the IEEE Xplore Gateway
-Version: 0.1
-Date: 2014-09-17
+Version: 0.2-1
+Date: 2014-10-18
 Authors@R: c(person("Saul", "Wiggin", role=c("aut","cre"),
     email="saulwiggin@googlemail.com"),
     person("Karl", "Broman", role="aut",
