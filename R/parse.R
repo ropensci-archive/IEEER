@@ -1,9 +1,14 @@
-
 # convert XML result from IEEE_search to a list format
 result2list <-
 function(searchresult, sep="|")
 {
     root <- XML::xmlRoot(XML::xmlParse(httr::content(searchresult, "text"), asText=TRUE))
+
+    if(no_records(root)) {
+        result <- NULL
+        return(result)
+    }
+
     totalfound <- as.numeric(XML::xmlValue(root[["totalfound"]]))
     totalsearched <- as.numeric(XML::xmlValue(root[["totalsearched"]]))
 
@@ -65,7 +70,7 @@ function()
 
 # data frame for an empty result
 empty_result <-
-function(columns)
+function(columns=expected_columns())
 {
     result <- lapply(columns, function(a) character(0))
     names(result) <- columns
@@ -80,7 +85,7 @@ function(listresult)
     n_result <- length(listresult)
 
     if(n_result==0)
-        return(empty_result(expected_columns()))
+        return(empty_result())
 
     columns <- expected_columns()
 
@@ -106,4 +111,17 @@ function(listresult)
         attr(result, s) <- attr(listresult, s)
 
     result
+}
+
+no_records <-
+function(root)
+{
+    val <- XML::xmlValue(root)
+
+    if(length(grep("returned 0 records", val)) > 0 ||
+       length(grep("No value specified for query parameter", val)) > 0 ||
+       length(grep("One of the parameters .+ required", val)) > 0)
+        return(TRUE)
+
+    FALSE
 }

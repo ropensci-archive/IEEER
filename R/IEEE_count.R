@@ -47,7 +47,8 @@ function(query=NULL)
     listresult <- result2list(search_result)
 
     # return totalResults
-    result <- attr(listresult, "totalfound")
+    if(is.null(listresult)) result <- 0
+    else result <- attr(listresult, "totalfound")
 
     attr(result, "search_info") <-
         search_attributes(query, NULL, NULL, NULL, NULL)
