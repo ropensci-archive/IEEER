@@ -43,3 +43,6 @@ z[,c("authors", "title")]
 ### License
 
 Licensed under the [MIT license](http://cran.r-project.org/web/licenses/MIT). ([More information here](http://en.wikipedia.org/wiki/MIT_License).)
+
+[![ropensci footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+
