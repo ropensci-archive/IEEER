@@ -41,7 +41,7 @@ Use `IEEE_search()` to search the
 [IEEE Xplore Search Gateway](http://ieeexplore.ieee.org/gateway/) and
 `IEEE_count()` to get a simple count of articles matching a query.
 
-Suppose we wanted to identify all arXiv manuscripts with
+Suppose we wanted to identify all IEEE manuscripts with
 &ldquo;`Rabiner, L.`&rdquo; as an author.  It is best to first get a
 count, so that we have a sense of how many records the search will
 return. We first use `library()` to load the IEEER package and then
