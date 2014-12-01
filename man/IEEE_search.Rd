@@ -5,9 +5,8 @@
 \title{The main search function for IEEE}
 \usage{
 IEEE_search(query = NULL, start = 1, limit = 10, sort_by = c("year",
-  "author", "title", "affiliation", "journal", "articlenumber"),
-  ascending = TRUE, batchsize = 100, output_format = c("data.frame",
-  "list"), sep = "|")
+  "author", "title", "affiliation", "journal"), ascending = TRUE,
+  batchsize = 100, output_format = c("data.frame", "list"), sep = "|")
 }
 \arguments{
 \item{query}{Character string (for a simple search), or a named

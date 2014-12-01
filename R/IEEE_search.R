@@ -78,7 +78,7 @@
 #' \donttest{z <- IEEE_search(list(au="Rabiner", pys=1960, pye=1970))}
 IEEE_search <-
 function(query=NULL, start=1, limit=10,
-         sort_by=c("year", "author", "title", "affiliation", "journal", "articlenumber"),
+         sort_by=c("year", "author", "title", "affiliation", "journal"),
          ascending=TRUE, batchsize=100,
          output_format=c("data.frame", "list"), sep="|")
 {
@@ -142,7 +142,7 @@ function(query=NULL, start=1, limit=10,
 # search in batches
 IEEE_search_inbatches <-
 function(query=NULL, start=0, limit=10,
-         sort_by=c("year", "author", "title", "affiliation", "journal", "articlenumber"),
+         sort_by=c("year", "author", "title", "affiliation", "journal"),
          ascending=TRUE, batchsize=500,
          output_format=c("data.frame", "list"), sep="|")
 {
@@ -236,7 +236,7 @@ function(query, field, allowed)
 
 # re-code the sort_by argument using IEEE Xplore codes
 recode_sortby <-
-function(sort_by=c("year", "author", "title", "affiliation", "journal", "articlenumber"))
+function(sort_by=c("year", "author", "title", "affiliation", "journal"))
 {
     sort_by <- match.arg(sort_by)
     switch(sort_by,
@@ -244,8 +244,7 @@ function(sort_by=c("year", "author", "title", "affiliation", "journal", "article
            author="au",
            title="ti",
            affiliation="cs",
-           journal="jn",
-           articlenumber="an")
+           journal="jn")
 }
 
 
