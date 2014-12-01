@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/ropensci/IEEER.png?branch=master)](https://travis-ci.org/ropensci/IEEER)
+[![Build status](https://ci.appveyor.com/api/projects/status/kkqyqak224a98jlh)](https://ci.appveyor.com/project/karthik/IEEER)
+
 ## IEEER: R interface to the IEEE Xplore Gateway
 
 [IEEE](http://www.ieee.org/index.html) stands for the Institute of
