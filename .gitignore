@@ -1,5 +1,3 @@
 *.Rout
 .RData
 .Rhistory
-inst/doc/IEEER.md
-inst/doc/IEEER.html
