@@ -18,19 +18,9 @@ The [IEEER package](https://github.com/ropensci/IEEER) is an
 [R](http://www.r-project.org) interface to the
 [IEEE Xplore Search Gateway](http://ieeexplore.ieee.org/gateway/).
 
-```{r check_IEEE_connection, include=FALSE}
-# check connection to IEEE; abort if no connection
-library(knitr)
-library(IEEER)
-if(!can_IEEE_connect()) {
-    opts_knit$set(stop_on_error = 2L)
-    stop("Cannot connect to IEEE")
-}
-```
 
-```{r change_IEEER_delay_option, include=FALSE}
-options(IEEER_delay=0.5)
-```
+
+
 
 ## Installation
 
@@ -39,7 +29,8 @@ currently available on [CRAN](http://cran.r-project.org). To install the
 package from [GitHub](http://github.com), use
 `devtools::install_github()`, as follows:
 
-```{r install_pkgs, eval=FALSE}
+
+```r
 install.packages("devtools")
 library(devtools)
 install_github("ropensci/IEEER")
@@ -57,9 +48,14 @@ count, so that we have a sense of how many records the search will
 return. We first use `library()` to load the IEEER package and then
 `IEEE_count()` to get the count.
 
-```{r IEEE_count}
+
+```r
 library(IEEER)
 IEEE_count(list(au="Rabiner, L"))
+```
+
+```
+## [1] 239
 ```
 
 The search query could be single character string as free text,
@@ -73,15 +69,25 @@ the [IEEE Xplore Search page](http://ieeexplore.ieee.org/gateway/).
 To get a count of the number of records with `Rabiner, L` as author
 and `Markov` in the title, we would use:
 
-```{r IEEE_count_w_Markov}
+
+```r
 IEEE_count(list(au="Rabiner, L", ti="Markov"))
+```
+
+```
+## [1] 21
 ```
 
 To obtain the actual records matching the query, use `IEEE_search()`.
 
-```{r IEEE_search}
+
+```r
 rec <- IEEE_search(list(au="Rabiner, L", ti="Markov"))
 nrow(rec)
+```
+
+```
+## [1] 10
 ```
 
 The default is to grab no more than 10 records; this limit can be
@@ -92,17 +98,27 @@ Also note that the result of `IEEE_search()` has an attribute
 `"totalfound"` containing the total count of search results; this
 is the same as what `IEEE_count()` provides.
 
-```{r IEEE_search_attr}
+
+```r
 attr(rec, "totalfound")
 ```
 
+```
+## [1] 21
+```
+
 The following will get us all
-`r IEEE_count(list(au="Rabiner, L", ti="Markov"))`
+21
 records.
 
-```{r IEEE_search_limit50}
+
+```r
 rec <- IEEE_search(list(au="Rabiner, L", ti="Markov"), limit=50)
 nrow(rec)
+```
+
+```
+## [1] 21
 ```
 
 `IEEE_search()` returns a data frame with each row being a single
@@ -123,8 +139,24 @@ possible query parameters.
 The IEEER package includes a dataset `query_param` that
 lists the terms (like `au`) that you can use. Here is the first five
 
-```{r query_param}
+
+```r
 query_param[1:5,]
+```
+
+```
+##   term                           description boolean_query_field
+## 1   an                        Article number      Article Number
+## 2   au         Terms to search for in Author              Author
+## 3   ti Terms to search for in Document Title      Document Title
+## 4   ab       Terms to search for in Abstract            Abstract
+## 5  doi            Terms to search for in DOI                 DOI
+##                                            type
+## 1           Parameter specifying single article
+## 2 Parameters specifying search fields and terms
+## 3 Parameters specifying search fields and terms
+## 4 Parameters specifying search fields and terms
+## 5 Parameters specifying search fields and terms
 ```
 
 These are taken from a table at
@@ -136,9 +168,22 @@ the [IEEE Xplore Search page](http://ieeexplore.ieee.org/gateway/).
 The output of `IEEE_search()` is a data frame with the following
 columns.
 
-```{r IEEE_search_result}
+
+```r
 res <- IEEE_search(list(au="Rabiner, L"), limit=1)
 names(res)
+```
+
+```
+##  [1] "rank"              "title"             "authors"          
+##  [4] "affiliations"      "pubtitle"          "punumber"         
+##  [7] "py"                "volume"            "issue"            
+## [10] "part"              "spage"             "epage"            
+## [13] "arnumber"          "abstract"          "doi"              
+## [16] "mdurl"             "pdf"               "pubtype"          
+## [19] "publisher"         "isbn"              "issn"             
+## [22] "publicationId"     "thesaurusterms"    "controlledterms"  
+## [25] "uncontrolledterms" "htmlFlag"
 ```
 
 The columns are described in the help file for `IEEE_search()`. Try
@@ -152,10 +197,24 @@ The `IEEE_search()` function has two arguments for sorting the results,
 
 Here's an example, to sort the results by title, in descending order.
 
-```{r sortby_example}
+
+```r
 res <- IEEE_search(list(au="Rabiner, L", title="Markov"),
                    sort_by="title", ascending=FALSE)
 res$title
+```
+
+```
+##  [1] "Word recognition using whole word and subword models"                                             
+##  [2] "Wiring telephone apparatus from computer-generated speech"                                        
+##  [3] "Voiced-unvoiced-silence detection using the Itakura LPC distance measure"                         
+##  [4] "Unbiased spectral estimation and system identification using short-time spectral analysis methods"
+##  [5] "Training set design for connected speech recognition"                                             
+##  [6] "Tone detection for automatic control of audio tape drives"                                        
+##  [7] "There Is No Data like More Data"                                                                  
+##  [8] "Theory of roundoff noise in cascade realizations of finite impulse response digital filters"      
+##  [9] "Theory and Application of Digital Signal Processing"                                              
+## [10] "The Speech Pioneers"
 ```
 
 
@@ -185,7 +244,8 @@ period for the delay configurable with the R option
 
 To reduce the delay to 1 second, use:
 
-```{r IEEER_delay, eval=FALSE}
+
+```r
 options(IEEER_delay=1)
 ```
 

@@ -69,13 +69,15 @@
 #' searched.
 #'
 #' @examples
+#' \donttest{
 #' # search for author Rabiner with Markov in title
 #' z <- IEEE_search(list(au="Rabiner", ti="Markov"), limit=2)
 #' attr(z, "totalfound") # total no. records matching query
 #' z$title
 #'
 #' # search for author Rabiner in years 1960-1970
-#' \donttest{z <- IEEE_search(list(au="Rabiner", pys=1960, pye=1970))}
+#' z <- IEEE_search(list(au="Rabiner", pys=1960, pye=1970))
+#' }
 IEEE_search <-
 function(query=NULL, start=1, limit=10,
          sort_by=c("year", "author", "title", "affiliation", "journal"),

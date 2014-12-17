@@ -15,14 +15,16 @@
 #' parameters and the time at which it was performed.
 #'
 #' @examples
+#' \donttest{
 #' # count papers in year 1970
 #' IEEE_count(list(pys=1970, pye=1970))
 #'
 #' # count papers by author Rabiner
-#' \donttest{IEEE_count(list(au="Rabiner"))}
+#' IEEE_count(list(au="Rabiner"))
 #'
 #' # count papers by author Rabiner, L
-#' \donttest{IEEE_count(list(au="Rabiner, L"))}
+#' IEEE_count(list(au="Rabiner, L"))
+#' }
 IEEE_count <-
 function(query=NULL)
 {
