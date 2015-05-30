@@ -1,9 +1,11 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{IEEER tutorial}
--->
-
-# IEEER tutorial
+---
+title: IEEER tutorial
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{IEEER tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8](inputenc)
+---
 
 [IEEE](http://www.ieee.org/index.html) stands for the Institute of
 Electrical and Electronic Engineers. It publishes well over 100
@@ -227,6 +229,3 @@ are combined.
   [MIT](https://github.com/ropensci/IEEER/blob/master/LICENSE)
 - Report bugs or suggestions improvements by [submitting an issue](https://github.com/reopensci/IEEER/issues) to
   [the GitHub repository for IEEER](https://github.com/ropensci/IEEER).
-
-<!-- the following to make it look nicer -->
-<link href="http://kbroman.org/qtlcharts/assets/vignettes/vignette.css" rel="stylesheet"></link>

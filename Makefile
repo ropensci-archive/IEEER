@@ -7,8 +7,9 @@ doc:
 vignettes: inst/doc/IEEER.html
 
 inst/doc/IEEER.html: vignettes/IEEER.Rmd
-	cp $< $(@D)
-	cd $(@D);R -e 'knitr::knit2html("$(<F)")'
+	cd $(<D); \
+	R -e "rmarkdown::render('$(<F)')"; \
+	mv $(@F) ../$(@D)
 
 data: data/query_param.RData
 
