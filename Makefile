@@ -2,13 +2,13 @@ all: doc data vignettes
 .PHONY: doc data vignettes
 
 doc:
-	R -e 'library(devtools);document()'
+	R -e 'devtools::document()'
 
 vignettes: inst/doc/IEEER.html
 
 inst/doc/IEEER.html: vignettes/IEEER.Rmd
 	cp $< $(@D)
-	cd $(@D);R -e 'library(knitr);knit2html("$(<F)")'
+	cd $(@D);R -e 'knitr::knit2html("$(<F)")'
 
 data: data/query_param.RData
 
