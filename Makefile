@@ -8,8 +8,7 @@ vignettes: inst/doc/IEEER.html
 
 inst/doc/IEEER.html: vignettes/IEEER.Rmd
 	cd $(<D); \
-	R -e "rmarkdown::render('$(<F)')"; \
-	mv $(@F) ../$(@D)
+	R -e "rmarkdown::render('$(<F)', output_dir='../$(@D)')"
 
 data: data/query_param.RData
 
