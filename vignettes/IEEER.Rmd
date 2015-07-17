@@ -227,5 +227,5 @@ are combined.
 
 - License:
   [MIT](https://github.com/ropensci/IEEER/blob/master/LICENSE)
-- Report bugs or suggestions improvements by [submitting an issue](https://github.com/reopensci/IEEER/issues) to
+- Report bugs or suggestions improvements by [submitting an issue](https://github.com/ropensci/IEEER/issues) to
   [the GitHub repository for IEEER](https://github.com/ropensci/IEEER).
