@@ -20,12 +20,14 @@ The [IEEER package](https://github.com/ropensci/IEEER) is an
 
 The package is not currently available on
 [CRAN](http://cran.r-project.org). To install, use
-`devtools:install_github()`, as follows:
+`install_github()` in the
+[devtools](https://github.com/hadley/devtools) package. (With
+`build_vignettes=TRUE`, the vignettes will be built and installed.)
 
 ```r
 install.packages("devtools")
 library(devtools)
-install_github("ropensci/IEEER")
+install_github("ropensci/IEEER", build_vignettes=TRUE)
 ```
 
 ### Basic usage
@@ -48,4 +50,3 @@ z[,c("authors", "title")]
 Licensed under the [MIT license](http://cran.r-project.org/web/licenses/MIT). ([More information here](http://en.wikipedia.org/wiki/MIT_License).)
 
 [![ropensci footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
-
