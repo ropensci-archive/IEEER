@@ -1,7 +1,7 @@
 Package: IEEER
 Title: Interface to the IEEE Xplore Gateway
-Version: 0.2.6
-Date: 2015-07-16
+Version: 0.2.7
+Date: 2016-01-14
 Authors@R: c(person("Saul", "Wiggin", role=c("aut","cre"),
     email="saulwiggin@googlemail.com"),
     person("Karl", "Broman", role="aut",
@@ -24,3 +24,4 @@ Suggests:
     testthat
 VignetteBuilder: knitr
 LazyData: true
+RoxygenNote: 5.0.1

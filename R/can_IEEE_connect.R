@@ -32,7 +32,7 @@ can_IEEE_connect <-
 
     # check for general http error
     status <- httr::http_status(z)
-    if(status$category != "success") {
+    if(status$category != "success" && status$category != "Success") {
         httr::warn_for_status(z)
         return(FALSE)
     }
