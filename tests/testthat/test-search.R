@@ -20,14 +20,14 @@ test_that("IEEE_count and IEEE_search work in a simple case", {
                 "An approach to the approximation problem for nonrecursive digital filters",
                 "Synthetic voices for computers",
                 "The design of wide-band recursive and nonrecursive digital differentiators")
-    authors <- c("Rader, C.M.;  Rabiner, L.R.;  Schafer, R.W.",
-                 "Rabiner, L.;  Gold, B.;  McGonegal, C.",
-                 "Flanagan, J.L.;  Coker, C.;  Rabiner, L.;  Schafer, R.W.;  Umeda, N.",
-                 "Rabiner, L.;  Steiglitz, K.")
-    pubtitle <- c("Bell System Technical Journal, The",
-                   "Audio and Electroacoustics, IEEE Transactions on",
-                   "Spectrum, IEEE",
-                   "Audio and Electroacoustics, IEEE Transactions on")
+    authors <- c("C. M. Rader;  L. R. Rabiner;  R. W. Schafer",
+                 "L. Rabiner;  B. Gold;  C. McGonegal",
+                 "J. L. Flanagan;  C. H. Coker;  L. R. Rabiner;  R. W. Schafer;  N. Umeda",
+                 "L. Rabiner;  K. Steiglitz")
+    pubtitle <- c("The Bell System Technical Journal",
+                   "IEEE Transactions on Audio and Electroacoustics",
+                   "IEEE Spectrum",
+                   "IEEE Transactions on Audio and Electroacoustics")
 
     expect_equal(result$title, titles)
     expect_equal(result$authors, authors)
