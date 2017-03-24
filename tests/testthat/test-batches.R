@@ -2,6 +2,8 @@ context("IEEER_search in batches")
 
 test_that("batch search gives same result as all together", {
 
+    if(!interactive()) skip("this test only run locally")
+
     # shorter delay to speed tests
     old_delay <- getOption("IEEER_delay")
     on.exit(options(IEEER_delay=old_delay))
