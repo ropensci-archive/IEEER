@@ -95,4 +95,3 @@ z$title
 z <- IEEE_search(list(au="Rabiner", pys=1960, pye=1970))
 }
 }
-

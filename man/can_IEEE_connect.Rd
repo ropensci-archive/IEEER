@@ -21,4 +21,3 @@ Check for connection to IEEE API
 can_IEEE_connect(2)
 }
 }
-
