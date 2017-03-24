@@ -2,6 +2,8 @@ context("basic searches")
 
 test_that("IEEE_count and IEEE_search work in a simple case", {
 
+    if(!interactive()) skip("this test only run locally")
+
     # shorter delay to speed tests
     old_delay <- getOption("IEEER_delay")
     on.exit(options(IEEER_delay=old_delay))
