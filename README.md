@@ -1,6 +1,5 @@
-[![Build Status](https://travis-ci.org/ropensci/IEEER.svg?branch=master)](https://travis-ci.org/ropensci/IEEER)
-[![Build status](https://ci.appveyor.com/api/projects/status/kkqyqak224a98jlh)](https://ci.appveyor.com/project/karthik/IEEER)
-[![codecov.io](https://codecov.io/github/ropensci/IEEER/coverage.svg?branch=master)](https://codecov.io/github/ropensci/IEEER?branch=master)
+[![Project Status: Abandoned – Initial development has started, but there has not yet been a stable, usable release; the project has been abandoned and the author(s) do not intend on continuing development.](https://www.repostatus.org/badges/latest/abandoned.svg)](https://www.repostatus.org/#abandoned)
+
 
 ## IEEER: R interface to the IEEE Xplore Gateway
 
